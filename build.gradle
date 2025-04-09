@@ -1,0 +1,48 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.25'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.9.25'
+    id 'org.springframework.boot' version '3.4.4'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'practice'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.security:spring-security-oauth2-authorization-server:1.2.1") // 사용 중인 인증 서버용 버전
+    implementation("org.springframework.security:spring-security-oauth2-client")
+
+    // ✅ DSL을 사용하려면 아래 이걸 꼭 추가해야 함!
+    implementation("org.springframework.security:spring-security-config")
+    implementation("org.springframework.security:spring-security-web")
+    implementation("org.springframework.security:spring-security-oauth2-core")
+    implementation("org.springframework.security:spring-security-oauth2-client")
+
+    // ✅ 핵심 DSL 지원 모듈
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3") // (있으면 좋은 코루틴)
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+    // ✅ 이게 있어야 DSL `http { ... }` 형태 import 가능!
+    implementation("org.springframework.security:spring-security-oauth2-authorization-server")
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll '-Xjsr305=strict'
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
