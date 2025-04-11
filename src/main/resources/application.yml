@@ -18,3 +18,13 @@ spring:
             token-uri: http://localhost:9000/oauth2/token
             user-info-uri: http://localhost:9000/userinfo
             user-name-attribute: sub
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+        secure: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG

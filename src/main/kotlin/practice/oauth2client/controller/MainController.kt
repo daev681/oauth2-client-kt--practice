@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping
 class MainController {
 
     @GetMapping("/")
-    fun home(): String = "index"
+    fun home(): String {
+        return "redirect:/oauth2/authorization/client-oidc"
+    }
 
     @GetMapping("/secure")
     fun secure(model: Model, @AuthenticationPrincipal oauth2User: OAuth2User): String {
