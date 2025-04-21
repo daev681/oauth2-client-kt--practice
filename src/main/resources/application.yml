@@ -23,7 +23,7 @@ spring:
       cookie:
         same-site: lax
         secure: false
-
+        domain: localhost  # 쿠키 도메인을 localhost로 설정
 logging:
   level:
     org.springframework.security: DEBUG

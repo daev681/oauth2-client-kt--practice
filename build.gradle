@@ -21,7 +21,6 @@ repositories {
 dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-web")
-
     // 나머지 기존 의존성 유지
     implementation("org.springframework.security:spring-security-oauth2-authorization-server")
     implementation("org.springframework.security:spring-security-oauth2-client")
